@@ -7,6 +7,10 @@ import {
   ChevronsRight,
 } from "lucide-react";
 import { IconButton } from "./icon_button";
+import { Table } from "./table/table";
+import { TableHeader } from "./table/table_header";
+import { TableCell } from "./table/table_cell";
+import { TableRow } from "./table/table-row";
 
 export function AttendeeList() {
   return (
@@ -23,69 +27,45 @@ export function AttendeeList() {
           </div>
         </div>
 
-        <div className="border border-white/10 rounded-lg">
-          <table className="w-full">
+        <Table>
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-3 px-4 text-sm font-semibold text-left">
+                <TableHeader>
                   <input type="checkbox" className="size-4 bg-black/20 rounded border border-white/10 " />
-                </th>
-                <th className="py-3 px-4 text-sm font-semibold text-left">
-                  Código
-                </th>
-                <th className="py-3 px-4 text-sm font-semibold text-left">
-                  Participante
-                </th>
-                <th className="py-3 px-4 text-sm font-semibold text-left">
-                  Data de inscrição
-                </th>
-                <th className="py-3 px-4 text-sm font-semibold text-left">
-                  Data de Check-in
-                </th>
-                <th
-                  style={{ width: 48 }}
-                  className="py-3 px-4 text-sm font-semibold text-left"
-                ></th>
+                </TableHeader>
+                <TableHeader>Código </TableHeader>
+                <TableHeader>Participante </TableHeader>
+                <TableHeader>Data de inscrição</TableHeader>
+                <TableHeader>Data de Check-in</TableHeader>
+                <TableHeader style={{ width: 48 }}></TableHeader>
               </tr>
             </thead>
             <tbody>
               {Array.from({ length: 8 }).map((_, i) => {
                 return (
-                  <tr key={i} className="border-b border-white/10">
-                    <td className="py-3 px-4 text-sm text-zinc-300">
+                  <TableRow key={i} className="border-b border-white/10 hover:bg-white/5">
+                    <TableCell>
                       <input type="checkbox"  className="size-4 bg-black/20 rounded border border-white/10 "/>
-                    </td>
-                    <td className="py-3 px-4 text-sm text-zinc-300">12345</td>
-                    <td className="py-3 px-4 text-sm text-zinc-300">
+                    </TableCell>
+                    <TableCell>12345</TableCell>
+                    <TableCell>
                       <div className="flex flex-col gap-1">
-                        <span className="font-semibold text-white">
-                          Eduardo da Silva Sichelero
-                        </span>
+                        <span className="font-semibold text-white">Eduardo da Silva Sichelero</span>
                         <span>eduardoadf@hotad.com</span>
                       </div>
-                    </td>
-                    <td className="py-3 px-4 text-sm text-zinc-300">
-                      7 dias atrás
-                    </td>
-                    <td className="py-3 px-4 text-sm text-zinc-300">
-                      3 dias atrás
-                    </td>
-                    <td className="py-3 px-4 text-sm text-zinc-300">
-                      <IconButton transparent>
-                        <MoreHorizontal className="size-4" />
-                      </IconButton>
-                    </td>
-                  </tr>
+                    </TableCell>
+                    <TableCell> 7 dias atrás</TableCell>
+                    <TableCell>3 dias atrás</TableCell>
+                    <TableCell><IconButton transparent><MoreHorizontal className="size-4" /></IconButton></TableCell>
+                  </TableRow>
                 );
               })}
             </tbody>
 
             <tfoot>
               <tr>
-                <td className="py-3 px-4 text-sm text-zinc-300" colSpan={3}>
-                  Mostrando 10 de 228 itens
-                </td>
-                <td className="py-3 px-4 text-sm text-zinc-300" colSpan={3}>
+                <TableCell colSpan={3}>Mostrando 10 de 228 itens</TableCell>
+                <TableCell colSpan={3}>
                   <div className="w-full flex justify-end">
                     <div className="inline-flex items-center gap-8">
                       <span>Página 1 de 23</span>
@@ -108,11 +88,10 @@ export function AttendeeList() {
                       </div>
                     </div>
                   </div>
-                </td>
+                </TableCell>
               </tr>
             </tfoot>
-          </table>
-        </div>
+        </Table>
       </div>
     </>
   );
